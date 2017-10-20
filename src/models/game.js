@@ -29,14 +29,24 @@ function getOne(id) {
 }
 
 function create(body) {
+  const errors = []
+
   const name = body.name
   const weight = body.weight
   const own = body.own
   const id = uuid()
 
-  const game = { name, weight, own, id }
-  games.push(game)
-  return game
+  let response
+  if (!name || !weight || !own) {
+    errors.push("Must include name, weight, and ownership (true/false)")
+    response = { errors }
+  } else {
+    const game = { name, weight, own, id }
+    games.push(game)
+    response = game
+  }
+
+  return response
 }
 
 function update(id, body) {
