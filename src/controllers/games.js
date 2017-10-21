@@ -8,7 +8,6 @@ function getAll(req, res, next) {
 
 function getOne(req, res, next) {
   const id = req.params.id
-  console.log(req.params);
   const data = model.getOne(id)
 
   res.status(200).json({ data })
